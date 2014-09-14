@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+	<strong>  <%= @board.Project %></strong>
+
+</h2>
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>
+<div class="separator"><br /></div>
+<div class="sortable_column"><!-- esto nos sirve para poder mover columnas de un lado a otro-->
+	<% if @columns.first %> 
+	<!--Para cada lista vamos a crear un div-->
+	<% @columns.each do |column| %>
+	<div class="list" id="<%=column.id%>">
+
+		<h3><%=column.Name%></h3>
+		<div class="sortable_task">
+			<% if @tasks.first%>
+			<% @tasks.each do |task|%>
+			<!-- Para cada task que pertenezca a la lista vamos a poner su titulo por ahora -->
+			<%if task.list_id == column.id%>
+			<div class="task" id="<%=task.id%>">
+				<h4 class="titulo_tarea"><%=task.title%></h4>
+				<p class="descripcion_tarea"><%=task.description%></p>
+			</div>
+			<% end -%>
+			<% end -%>
+			<% end -%>
+			
+		</div>
+	</div>
+	<% end %> 
+	<% end -%>
+</div>
+
+<div class="separator"></div>
+
