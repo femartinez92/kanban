@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
     column = BoardList.where(board_id: params[:id])
     @columns ||= []
     @tasks ||= []
-    # Para cada lista buscamos la lista en sí y todas las tareas
+    # Para cada tupla buscamos la lista y todas las tareas
     column.each{|col|
       @columns << List.find(col.list_id)
       tareas = Task.where(list_id: col.list_id)
