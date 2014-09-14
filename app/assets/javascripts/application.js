@@ -17,18 +17,32 @@
 //= require_tree .
 
 //Para conectar listas a las que ya estan y poder intercambiar cosas de listas 
- $(function() {
+$(function() {
  	//Ordenar columnas
-    $( ".sortable_column" ).sortable({items: "> div"},
-    	{opacity: 0.9 },{revert: true},{scroll: true}).disableSelection();
+ 	$( ".sortable_column" ).sortable({items: "> div",
+ 		opacity: 0.9 ,
+ 		revert: true,
+ 		scroll: true,
+ 		// update: function(){
+ 		// 	$.ajax({
+ 		// 		url: '/tasks/sort',
+ 		// 		type: 'post',
+ 		// 		data: $('#books').sortable('serialize'),
+ 		// 		dataType: 'script',
+ 		// 		complete: function(request){
+ 		// 			$('#books').effect('highlight');
+ 		// 		}
+ 		// 	});
+ 		// }
+ 	}).disableSelection();
     //Ordenar tasks
-  	$( ".sortable_task" ).sortable({items: "> div"},{opacity: 0.7 },{connectWith: ".sortable_task"}).disableSelection();
+    $( ".sortable_task" ).sortable({items: "> div"},{opacity: 0.7 },{connectWith: ".sortable_task"}).disableSelection();
 
-  	$(document).on("click",'#addNewTask',function(e){
-        e.preventDefault();
-        var newCo = $('<li>New Callout</li>').draggable(draggable_opts);
-        $('#sph-callout-portlet-avail').append(newCo);
+    $(document).on("click",'#addNewTask',function(e){
+    	e.preventDefault();
+    	var newCo = $('<li>New Callout</li>').draggable(draggable_opts);
+    	$('#sph-callout-portlet-avail').append(newCo);
     });
 
-  });
+});
 
